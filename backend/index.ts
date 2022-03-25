@@ -14,19 +14,19 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   const server = express()
-  const httpServer = http.createServer(server);
+  const httpServer = http.createServer(server)
   const io = new Server(httpServer, {
     cors: {
-      origin: '*'
+      origin: '*',
     },
-    pingInterval: 1000
+    pingInterval: 1000,
   })
 
   // Sorry I don't know another way
   let publicFolder = __dirname
-  let distPos = publicFolder.lastIndexOf("dist");
+  let distPos = publicFolder.lastIndexOf('dist')
   if (distPos != -1)
-    publicFolder = path.join(publicFolder.substring(0, distPos), '/public/');
+    publicFolder = path.join(publicFolder.substring(0, distPos), '/public/')
 
   console.log(publicFolder)
 
