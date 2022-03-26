@@ -101,6 +101,13 @@ export default class SocketServer {
             info.loggedIn = true
             this.player?.listenerLoggedIn(info)
             this.sendListeners()
+            if (
+              !this.getListeners().filter((x) => x.socket.id !== info.socket.id)
+                .length
+            ) {
+              console.log('set host', info.name)
+              this.updateHost(info, true)
+            }
           } else {
             if (badVersion != null) badVersion(config.clientVersionRequirements)
 
