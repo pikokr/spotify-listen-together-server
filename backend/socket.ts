@@ -127,7 +127,12 @@ export default class SocketServer {
           ) {
             this.updateHost(info, true)
           } else {
-            socket.emit('bottomMessage', 'There is already an host.')
+            ;[...this.clientsInfo.values()]
+              .filter((x) => x.isHost)
+              .forEach((value) => {
+                this.updateHost(value, false)
+              })
+            this.updateHost(info, true)
           }
         } else {
           this.updateHost(info, false)
